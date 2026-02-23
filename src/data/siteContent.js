@@ -1,0 +1,165 @@
+export const siteContent = {
+  header: {
+    colorBallLogo: '/images/Rutherford-color-ball---2.png',
+    rutherfordLogo: '/images/logo-rutherford-2021-white-306.png',
+    xriteLogo: '/images/xrite-pantone-horiz-web-rev-290.png',
+    colorloopLogo: '/images/colorloop-logo.png',
+    consoleLink: 'https://rgproducts.typeform.com/to/elOTOK#english=xxxxx',
+    supportLink: 'https://www.rutherford.fr/support-need-help-with-your-rutherford-system-.html',
+    eshopLink: 'https://store37824098.company.site/',
+  },
+  pages: [
+    { label: 'Home', href: 'https://www.rutherford.fr/' },
+    {
+      label: 'Products',
+      href: 'https://www.rutherford.fr/products-cip3-preset-and-closed-loop-for-packaging-commercial-printer-offset-sheetfed.html',
+    },
+    { label: 'Videos', href: 'https://www.rutherford.fr/video.html' },
+    { label: 'Success Stories', href: 'https://www.rutherford.fr/success-story-from-rutherford-xrite-pantone.html' },
+    { label: 'How it works', href: 'https://www.rutherford.fr/how-it-works.html' },
+    { label: 'Blog', href: 'https://www.rutherford.fr/blog.html' },
+    { label: 'Support', href: 'https://www.rutherford.fr/support-need-help-with-your-rutherford-system-.html' },
+    { label: 'Rutherford eShop', href: 'https://store37824098.company.site/' },
+  ],
+  hero: {
+    pretitle: 'ColorLoop by Rutherford',
+    title: 'Stop Playing the Piano',
+    subtitle: 'Save money, ink, paper & energy',
+    description:
+      'CIP3 / CIP4 preset and closed-loop color control for offset presses. Built to improve stability, reduce waste, and speed up make-ready.',
+    machineImage: '/images/colorloop-machine.png',
+    screenImage: '/images/IMGColorloop.png',
+  },
+  introImages: [
+    { alt: 'Operator and press', src: '/images/DMCedkos23-2.jpg' },
+    { alt: 'Print detail', src: '/images/DSC_4720.jpg' },
+    { alt: 'Red ink close-up', src: '/images/Design Rutherford mediaPhoto 08-07-2022 10 27 25 (1)-2.jpg' },
+    { alt: 'Offset rollers', src: '/images/offset-1.jpg.webp' },
+    { alt: 'Press floor', src: '/images/Gemini_Generated_Image_1ozth21ozth21ozt.jpg' },
+    { alt: 'Industrial print line', src: '/images/choszrgdfgb.jpg' },
+  ],
+  teamSection: {
+    title: 'Smart Systems Need Smart People',
+    subtitle: 'Behind every precise result, there is a skilled team making it happen.',
+    images: [
+      { alt: 'Team portrait', src: '/images/IMG_1458.jpg' },
+      { alt: 'Founder portrait', src: '/images/IMG_1461.jpg' },
+      { alt: 'Team session', src: '/images/_DSC7392.jpg' },
+      { alt: 'Group portrait', src: '/images/IMG_1489.jpg' },
+      { alt: 'Workshop discussion', src: '/images/_DSC7371.jpg' },
+    ],
+  },
+  ctas: {
+    primary: { label: 'Console Validation', href: 'https://rgproducts.typeform.com/to/elOTOK#english=xxxxx' },
+    secondary: { label: 'Support', href: 'https://www.rutherford.fr/support-need-help-with-your-rutherford-system-.html' },
+    tertiary: { label: 'Rutherford eShop', href: 'https://store37824098.company.site/' },
+    upgrade: { label: 'Upgrade now to ColorLoop', href: 'https://store37824098.company.site/ColorLoop-Upgrade-p762700375' },
+  },
+  stats: [
+    { key: 'roi', value: '3 to 11 months', label: 'ROI window' },
+    { key: 'savings', value: 'Up to 60%', label: 'Make-ready savings' },
+    { key: 'years', value: '20+ years', label: 'Industry innovation' },
+    { key: 'global', value: 'Global', label: 'Deployments and support' },
+  ],
+  focus: [
+    {
+      title: 'Preset + Closed-loop',
+      text: 'Automate ink-key setup and corrections with CIP3/CIP4 data and live measurements.',
+    },
+    {
+      title: 'Press Fleet Standardization',
+      text: 'Run repeatable color performance across mixed press brands, models and plant locations.',
+    },
+    {
+      title: 'Operational Impact',
+      text: 'Reduce make-ready waste, lower operator load, and improve profitability with objective control.',
+    },
+  ],
+  social: [
+    { name: 'instagram', alt: 'Instagram', href: 'https://www.instagram.com/rutherfordgraphic/' },
+    { name: 'linkedin', alt: 'LinkedIn', href: 'https://linkedin.com/company/rutherford-graphic-products-llc' },
+    { name: 'facebook', alt: 'Facebook', href: 'https://www.facebook.com/Rutherford.fr' },
+    { name: 'pinterest', alt: 'Pinterest', href: 'https://www.pinterest.fr/rutherfordgraphic/' },
+    { name: 'youtube', alt: 'YouTube', href: 'https://www.youtube.com/channel/UChiClIodg9rbuTDnInE4GmQ' },
+  ],
+  roi: {
+    pigImage: '/images/image-collee-844.png',
+    title: 'Return On Investment',
+    description: 'Demonstrate financial impact quickly with measurable gains in efficiency and consistency.',
+  },
+  benefits: [
+    {
+      title: 'Profits',
+      icon: '/images/image-collee-168.png',
+      points: ['Return On Investment', '3 to 11 months ROI', 'Up to 60% savings on make-ready'],
+    },
+    {
+      title: 'Sustainability',
+      icon: '/images/image-collee-77.png',
+      points: ['Saves Ink', 'Save Paper', 'Save Energy'],
+    },
+    {
+      title: 'Ergonomic',
+      icon: '/images/image-collee-74.png',
+      points: ['Easy to learn', 'Intuitive user interface', 'Fast installation', 'Touchscreen all-in-one computer/monitor'],
+    },
+    {
+      title: 'Precision',
+      icon: '/images/image-collee-60.png',
+      points: ["Rutherford's adaptive incremental algorithm", 'Standardization & Stabilization'],
+    },
+  ],
+  pressBrands: [
+    { alt: 'Heidelberg', src: '/images/logo-heidelberger-druckmaschinen-1--364.webp', scale: 1.08 },
+    { alt: 'Ryobi', src: '/images/ryobi-1--188.png', scale: 1.35 },
+    { alt: 'KBA', src: '/images/kba-logo.svg-4-196.webp', scale: 1.02 },
+    { alt: 'Goss', src: '/images/goss_300_10184808-108.png', scale: 0.96 },
+    { alt: 'Manroland', src: '/images/manroland_logo.svg-3-304.png', scale: 0.92 },
+    { alt: 'Presstek', src: '/images/presstek-logo-no-tag-k--282.png', scale: 1.02 },
+    { alt: 'Komori', src: '/images/2560px-komori.svg-254.png', scale: 1.02 },
+    { alt: 'Koenig & Bauer', src: '/images/koenig_bauer_logo_p_rgb_blau-326.png', scale: 1.0 },
+    { alt: 'Sakurai', src: '/images/telechargement-4--190.png', scale: 1.03 },
+    { alt: 'Mitsubishi', src: '/images/mitsubishi_heavy_industries_logo.svg-298.png', scale: 0.88 },
+  ],
+  world: {
+    mapImage: '/images/download-world-map-png-photos-1920.png',
+    presses: [
+      { key: 'nw', src: '/images/press-3d-682.png' },
+      { key: 'ne', src: '/images/press-3d-682.png' },
+      { key: 'sw', src: '/images/press-3d-682.png' },
+      { key: 'se', src: '/images/press-3d-682.png' },
+    ],
+  },
+  certifications: [
+    { alt: 'MeasureColor', src: '/images/image-collee-283.png' },
+    { alt: 'ColorCert', src: '/images/colorcert-logo-final-1_11328716-106.jpg' },
+    { alt: 'Pantone Live Accredited', src: '/images/pliveaccreditedlogo-102.jpg' },
+    { alt: 'ChromaChecker', src: '/images/chromachecker_logo_cmyk_regular-156.webp' },
+    { alt: 'G7', src: '/images/g7_logo_cmyk-1-46-1.png' },
+  ],
+  brandOwners: [
+    { alt: 'Kering', src: '/images/image-collee-164.png' },
+    { alt: 'Unilever', src: '/images/image-collee-64.png' },
+    { alt: 'LVMH', src: '/images/image-collee-142.png' },
+    { alt: 'McDonalds', src: '/images/image-collee-96-1.png' },
+    { alt: 'Bestway', src: '/images/image-collee-131-1.png' },
+    { alt: 'Dior', src: '/images/image-collee-188.png' },
+    { alt: 'Lindt', src: '/images/image-collee-100.png' },
+    { alt: 'Chanel', src: '/images/image-collee-262-1.png' },
+  ],
+  mission: {
+    title: 'Our mission',
+    intro:
+      'Offset is a complex activity with intense pressure on quality, deadlines, and costs. Rutherford assembled a cross-functional printing team to deliver efficiency, simplicity, and precision.',
+    points: [
+      'Simplify operator tasks with automation and precision ink-key management.',
+      'Enhance print quality through stability and repeatability for buyers.',
+      'Increase production, profitability, and competitiveness with advanced presetting and closed-looping.',
+      'Reduce carbon footprint by lowering waste, ink usage, and energy consumption.',
+    ],
+  },
+  footer: {
+    copyright: 'Copyright © 2026 Rutherford.fr. All rights reserved.',
+    poweredBy: 'Powered by X-Rite Pantone',
+  },
+};
