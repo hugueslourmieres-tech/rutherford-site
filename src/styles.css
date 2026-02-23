@@ -933,8 +933,8 @@ a {
 }
 
 .footer-brand img {
-  width: 74px;
-  height: 74px;
+  width: 148px;
+  height: 148px;
   object-fit: contain;
 }
 
@@ -971,7 +971,7 @@ a {
   padding-top: 1rem;
   border-top: 1px solid #1f2734;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }

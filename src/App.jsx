@@ -493,7 +493,7 @@ export default function App() {
       <footer className="site-footer">
         <div className="container site-footer-grid">
           <div className="footer-brand">
-            <img src={siteContent.header.colorBallLogo} alt="Rutherford.fr" />
+            <img src={siteContent.header.rutherfordLogo} alt="Rutherford.fr" />
             <p>{siteContent.footer.poweredBy}</p>
           </div>
 
@@ -534,7 +534,6 @@ export default function App() {
         </div>
 
         <div className="container site-footer-bottom">
-          <SocialIcons items={siteContent.social} variant="brand" />
           <small>{siteContent.footer.copyright}</small>
         </div>
       </footer>
