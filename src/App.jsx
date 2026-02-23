@@ -172,40 +172,230 @@ function TeamFinalSection({ teamSection }) {
   );
 }
 
-export default function App() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const saved = window.localStorage.getItem('theme');
-    if (saved === 'dark') return true;
-    if (saved === 'light') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+function getLoopyReply(message) {
+  const text = message.toLowerCase();
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    window.localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }, [isDark]);
+  if (text.includes('roi') || text.includes('return') || text.includes('savings') || text.includes('econom')) {
+    return {
+      text: 'ColorLoop usually delivers ROI in 3 to 11 months, with make-ready savings up to 60% depending on press setup.',
+      links: [{ label: 'See Products', href: siteContent.pages.find((item) => item.label === 'Products')?.href }],
+    };
+  }
+
+  if (text.includes('brand') || text.includes('compatible') || text.includes('press')) {
+    return {
+      text: 'ColorLoop supports major press brands including Heidelberg, Ryobi, KBA, Goss, Komori, Koenig & Bauer, Mitsubishi and more.',
+      links: [{ label: 'How it works', href: siteContent.pages.find((item) => item.label === 'How it works')?.href }],
+    };
+  }
+
+  if (text.includes('support') || text.includes('help') || text.includes('problem') || text.includes('issue')) {
+    return {
+      text: 'You can contact Rutherford support directly. I can send you to the support page now.',
+      links: [{ label: 'Open Support', href: siteContent.ctas.secondary.href }],
+    };
+  }
+
+  if (text.includes('price') || text.includes('shop') || text.includes('buy') || text.includes('upgrade')) {
+    return {
+      text: 'You can access upgrades and products from the Rutherford eShop.',
+      links: [{ label: 'Open eShop', href: siteContent.ctas.tertiary.href }],
+    };
+  }
+
+  if (text.includes('video') || text.includes('demo')) {
+    return {
+      text: 'You can browse demos and case videos on the Videos page.',
+      links: [{ label: 'Watch Videos', href: siteContent.pages.find((item) => item.label === 'Videos')?.href }],
+    };
+  }
+
+  if (text.includes('what is') || text.includes('colorloop') || text.includes('rutherford')) {
+    return {
+      text: 'ColorLoop by Rutherford automates preset + closed-loop color control for offset presses to reduce waste and stabilize print quality.',
+      links: [{ label: 'Open Home', href: siteContent.pages.find((item) => item.label === 'Home')?.href }],
+    };
+  }
+
+  return {
+    text: 'I can help with ROI, compatibility, support, products, videos, and deployment questions about Rutherford and ColorLoop.',
+    links: [
+      { label: 'Support', href: siteContent.ctas.secondary.href },
+      { label: 'Products', href: siteContent.pages.find((item) => item.label === 'Products')?.href },
+    ],
+  };
+}
+
+function LoopyChat() {
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState('');
+  const [typing, setTyping] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      id: 'welcome',
+      role: 'bot',
+      text: 'Hi, I am Loopy. I can answer your questions about Rutherford and ColorLoop.',
+      links: [{ label: 'Console Validation', href: siteContent.ctas.primary.href }],
+    },
+  ]);
+
+  const prompts = ['What is ColorLoop?', 'How fast is ROI?', 'Which press brands are supported?', 'I need support'];
+
+  const sendMessage = (raw) => {
+    const text = raw.trim();
+    if (!text || typing) return;
+
+    const userMessage = { id: `u-${Date.now()}`, role: 'user', text };
+    const reply = getLoopyReply(text);
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+    setTyping(true);
+
+    window.setTimeout(() => {
+      setMessages((prev) => [...prev, { id: `b-${Date.now()}`, role: 'bot', text: reply.text, links: reply.links }]);
+      setTyping(false);
+    }, 560);
+  };
 
   return (
-    <div className={`openai-inspired ${isDark ? 'theme-dark' : 'theme-light'}`}>
+    <div className="loopy-widget">
+      {open ? (
+        <section className="loopy-panel" aria-label="Loopy chatbot">
+          <header className="loopy-header">
+            <div className="loopy-identity">
+              {!avatarError ? (
+                <img src="/images/loopy.png" alt="Loopy" onError={() => setAvatarError(true)} />
+              ) : (
+                <span className="loopy-avatar-fallback">L</span>
+              )}
+              <div>
+                <strong>Loopy</strong>
+                <p>Rutherford Assistant</p>
+              </div>
+            </div>
+            <button type="button" onClick={() => setOpen(false)} aria-label="Close Loopy chat">
+              Close
+            </button>
+          </header>
+
+          <div className="loopy-messages">
+            {messages.map((message) => (
+              <article key={message.id} className={`loopy-msg ${message.role}`}>
+                <p>{message.text}</p>
+                {message.links?.length ? (
+                  <div className="loopy-links">
+                    {message.links
+                      .filter((link) => Boolean(link?.href))
+                      .map((link) => (
+                        <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                          {link.label}
+                        </a>
+                      ))}
+                  </div>
+                ) : null}
+              </article>
+            ))}
+            {typing ? <p className="loopy-typing">Loopy is typing...</p> : null}
+          </div>
+
+          <div className="loopy-prompts">
+            {prompts.map((prompt) => (
+              <button key={prompt} type="button" onClick={() => sendMessage(prompt)}>
+                {prompt}
+              </button>
+            ))}
+          </div>
+
+          <form
+            className="loopy-input"
+            onSubmit={(event) => {
+              event.preventDefault();
+              sendMessage(input);
+            }}
+          >
+            <input
+              type="text"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              placeholder="Ask Loopy about Rutherford..."
+            />
+            <button type="submit">Send</button>
+          </form>
+        </section>
+      ) : null}
+
+      <button type="button" className="loopy-fab" onClick={() => setOpen((v) => !v)} aria-label="Open Loopy chatbot">
+        {!avatarError ? <img src="/images/loopy.png" alt="Loopy avatar" onError={() => setAvatarError(true)} /> : <span>L</span>}
+      </button>
+    </div>
+  );
+}
+
+export default function App() {
+  const codeGlyphs = ['const', '</>', '{}', 'deltaE', 'CIP3', 'if ()', '=>', 'inkKey'];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [codeTrail, setCodeTrail] = useState([]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const closeMenu = () => {
+      if (window.innerWidth > 1080) setIsMenuOpen(false);
+    };
+    window.addEventListener('resize', closeMenu);
+    return () => window.removeEventListener('resize', closeMenu);
+  }, []);
+
+  const handleMouseMove = (event) => {
+    const trailId = `${Date.now()}-${Math.random()}`;
+    const glyph = codeGlyphs[Math.floor(Math.random() * codeGlyphs.length)];
+    const nextTrail = {
+      id: trailId,
+      x: event.clientX,
+      y: event.clientY,
+      dx: Math.random() * 34 - 17,
+      dy: -14 - Math.random() * 24,
+      glyph,
+    };
+
+    setCodeTrail((prev) => [...prev.slice(-16), nextTrail]);
+    window.setTimeout(() => {
+      setCodeTrail((prev) => prev.filter((item) => item.id !== trailId));
+    }, 760);
+  };
+
+  return (
+    <div className="openai-inspired theme-light" onMouseMove={handleMouseMove}>
       <header className="minimal-header">
         <div className="container header-inner">
           <a href={siteContent.pages[0].href} className="wordmark" target="_blank" rel="noreferrer">
             <img src={siteContent.header.colorBallLogo} alt="Color Ball" />
           </a>
-          <nav className="header-nav" aria-label="Main">
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label="Open menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <nav className={`header-nav ${isMenuOpen ? 'open' : ''}`} aria-label="Main">
             {siteContent.pages.slice(0, 6).map((item) => (
-              <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+              <a key={item.label} href={item.href} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)}>
                 {item.label}
               </a>
             ))}
+            <a className="header-nav-cta" href={siteContent.ctas.primary.href} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)}>
+              {siteContent.ctas.primary.label}
+            </a>
           </nav>
           <a className="header-cta" href={siteContent.ctas.primary.href} target="_blank" rel="noreferrer">
             {siteContent.ctas.primary.label}
           </a>
-          <button type="button" className="theme-toggle" onClick={() => setIsDark((v) => !v)} aria-label="Toggle dark mode">
-            {isDark ? 'Light' : 'Dark'}
-          </button>
         </div>
       </header>
 
@@ -283,6 +473,23 @@ export default function App() {
         </section>
       </main>
 
+      <div className="code-trail-layer" aria-hidden="true">
+        {codeTrail.map((item) => (
+          <span
+            key={item.id}
+            className="code-trail"
+            style={{
+              '--x': `${item.x}px`,
+              '--y': `${item.y}px`,
+              '--dx': `${item.dx}px`,
+              '--dy': `${item.dy}px`,
+            }}
+          >
+            {item.glyph}
+          </span>
+        ))}
+      </div>
+
       <footer className="site-footer">
         <div className="container site-footer-grid">
           <div className="footer-brand">
@@ -331,6 +538,8 @@ export default function App() {
           <small>{siteContent.footer.copyright}</small>
         </div>
       </footer>
+
+      <LoopyChat />
     </div>
   );
 }
